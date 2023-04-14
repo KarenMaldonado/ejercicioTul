@@ -1,18 +1,17 @@
 public class arbol {
-
-    nodo raiz;
+    Nodo raiz;
 
     public arbol() {
         raiz = null;
     }
 
     public void insertar(int i, Object componente) {
-        nodo nd = new nodo(i);
+        Nodo nd = new Nodo(i);
         nd.elementos = componente;
         if (raiz == null) {
             raiz = nd;
         } else {
-            nodo auxiliar = raiz;
+            Nodo auxiliar = raiz;
 
             while (auxiliar != null) {
                 nd.padre = auxiliar;
@@ -21,7 +20,6 @@ public class arbol {
                 } else {
                     auxiliar = auxiliar.izq;
                 }
-
             }
 
             if (nd.llave < nd.padre.llave) {
@@ -29,32 +27,28 @@ public class arbol {
             } else {
                 nd.padre.der = nd;
             }
-
         }
-
     }
 
-    public void recorrer(nodo nd) {
+    public void recorrer(Nodo nd) {
         if (nd != null) {
             recorrer(nd.izq);
             System.out.println("elemento" + nd.llave + "componente" + nd.elementos);
             recorrer(nd.der);
         }
-
     }
 
-    public static boolean Bst(nodo nod, int Millave, int Mallave) {
+    public static boolean Bst(Nodo nod, int minLlave, int maxLlave) {
         if (nod == null) {
             return true;
         }
-        if (nod.llave < Millave || nod.llave > Mallave) {
+        if (nod.llave < minLlave || nod.llave > maxLlave) {
             return false;
         }
-        return Bst(nod.izq, Millave, nod.llave - 1) && Bst(nod.der, nod.llave + 1, Mallave);
-
+        return Bst(nod.izq, minLlave, nod.llave - 1) && Bst(nod.der, nod.llave + 1, maxLlave);
     }
 
-    public static void Bst(nodo nodo) {
+    public static void Bst(Nodo nodo) {
         if (Bst(nodo, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
             System.out.println("Es arbol de busqueda binaria");
         } else {
@@ -62,23 +56,19 @@ public class arbol {
         }
     }
 
-    private class nodo {
-
-        public nodo padre;
-        private nodo izq;
-        private nodo der;
+    private class Nodo {
+        public Nodo padre;
+        private Nodo izq;
+        private Nodo der;
         public int llave;
         public Object elementos;
 
-        public nodo(int puntero) {
+        public Nodo(int puntero) {
             llave = puntero;
             der = null;
             izq = null;
             padre = null;
             elementos = null;
-
         }
-
     }
-
 }

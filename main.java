@@ -1,4 +1,3 @@
-
 public class main {
     public static void main(String[] args) {
         arbol arbol1 = new arbol();
@@ -9,9 +8,6 @@ public class main {
         arbol1.insertar(2, "nodo5");
         arbol1.insertar(6, "nodo6");
 
-        arbol1.recorrer(arbol1.raiz);
-        arbol1.Bst(null);
-
+        arbol1.Bst(arbol1.raiz);
     }
-
 }
