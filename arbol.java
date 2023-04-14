@@ -45,10 +45,13 @@ public class arbol {
         if (nod.llave < minLlave || nod.llave > maxLlave) {
             return false;
         }
-        return Bst(nod.izq, minLlave, nod.llave - 1) && Bst(nod.der, nod.llave + 1, maxLlave);
+        boolean izqBst = Bst(nod.izq, minLlave, nod.llave - 1);
+        boolean derBst = Bst(nod.der, nod.llave + 1, maxLlave);
+        return izqBst && derBst;
     }
 
     public static void Bst(Nodo nodo) {
+        System.out.println(Bst(nodo, Integer.MIN_VALUE, Integer.MAX_VALUE));
         if (Bst(nodo, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
             System.out.println("Es arbol de busqueda binaria");
         } else {
